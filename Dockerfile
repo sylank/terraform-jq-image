@@ -1,6 +1,12 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y curl git unzip wget
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+ && apt-get install -y tzdata \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y awscli curl git unzip wget
 
 #JQ
 RUN curl https://stedolan.github.io/jq/download/linux64/jq > /usr/bin/jq && chmod +x /usr/bin/jq
